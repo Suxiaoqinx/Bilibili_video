@@ -1,0 +1,144 @@
+.content {
+    box-sizing: border-box;
+    min-height: 600px;
+}
+
+.search_container {
+    margin: 60px auto 0;
+    width: 600px;
+    height: 50px;
+    position: relative;
+}
+
+.search_container input {
+    padding-right: 110px;
+}
+
+.cover {
+    width: 300px;
+    margin: -20px auto;
+    padding: 0;
+}
+
+.cover img {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.video_info {
+    margin: 30px auto 20px;
+    text-align: center;
+    font-size: 16px;
+    text-align: center; 
+    overflow-wrap: break-word;
+    color: rgb(49, 112, 143);
+    line-height: 24px;
+}
+
+.video_info .video_info_desc{
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 10px;
+}
+
+input {
+    display: inline-block;
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
+    outline: none;
+    height: 50px;
+    padding-left: 10px;
+    width: 600px;
+    color: #333;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 40px;
+    margin: 0;
+}
+
+.input_tips {
+    color: #666;
+    height: 40px;
+    width: 80%;
+    font-size: 14px;
+    background-color: white;
+    position: relative;
+    line-height: 40px;
+    padding-left: 20px;
+    margin: 20px auto 10px;
+}
+
+.search {
+    right: 0;
+    top: 0;
+    border-radius: 0 4px 4px 0;
+    position: absolute;
+    display: inline-block;
+    width: 110px;
+    line-height: 50px;
+    text-align: center;
+    height: 50px;
+    color: white;
+    padding: 0;
+    margin: 0;
+    background-color: #1e9fff;
+    cursor: pointer;
+}
+
+.download {
+    border-radius: 4px;
+    display: inline-block;
+    width: 110px;
+    line-height: 40px;
+    text-align: center;
+    height: 40px;
+    color: white;
+    padding: 0;
+    margin: 0;
+    background-color:rgb(49, 112, 143);
+    cursor: pointer;
+}
+
+.result_container {
+    margin: 40px auto;
+}
+
+.search:hover {
+    opacity: .8;
+}
+
+.result_container .table_title {
+    background-color: #BCC7DD;
+    color: #56688a;
+    font-size: 16px;
+}
+
+.table_content {
+    color: #666;
+    border-bottom: 1px solid #e7e7e7;
+    min-height: 32px;
+    font-size: 16px;
+}
+
+th,
+td {
+    width: 25%;
+    border-bottom: 1px solid #e7e7e7;
+    text-align: center;
+    padding: 5px;
+}
+
+td {
+    padding: 10px 10px;
+}
+
+.result_container {
+    width: 80%;
+}
+
+table {
+    width: 100%;
+    border: 1px solid #e5e5e5;
+}

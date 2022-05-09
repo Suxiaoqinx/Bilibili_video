@@ -1,0 +1,93 @@
+.my_alert-wrapper {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000001;
+}
+
+.my_alert-wrapper .my_alertBox {
+    width: 800px;
+    padding: 20px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .2);
+    overflow: hidden;
+    opacity: 1;
+    display: flex;
+    margin: 20px auto;
+    -webkit-animation-name: slideDownUp;
+    /*动画名称*/
+    -webkit-animation-duration: 1s;
+    /*动画持续时间*/
+    -webkit-animation-iteration-count: 1;
+    /*动画次数*/
+    -webkit-animation-delay: 0s;
+    /*延迟时间*/
+}
+
+@media only screen and (max-width: 800px) {
+    .my_alertBox {
+        width: 300px;
+        left: calc(50% - 150px);
+    }
+}
+
+.my_alertBox--error {
+    background-color: rgb(255, 241, 240);
+    color: #f56c6c;
+    border: 2px solid #e5e5e5;
+}
+
+.my_alertBox--info {
+    background-color: #909399;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.my_alertBox--success {
+    background-color: rgb(246, 255, 237);
+    color: #67c23a;
+    border: 2px solid #e5e5e5;
+}
+
+.my_alertBox--warning {
+    background-color: rgb(255, 251, 230);
+    color: #e6a23c;
+    border: 2px solid #e5e5e5;
+}
+
+.my_alert-icon {
+    font-size: 16px;
+    width: 16px;
+}
+
+.my_alert-content {
+    flex: 1;
+    padding: 0 8px;
+    font-size: 16px;
+    line-height: 18px;
+    word-break: break-all;
+}
+
+.my_alert-closebtn {
+    font-size: 16px;
+    color: #c0c4cc;
+    opacity: 1;
+    width: 20px;
+    /*position: absolute;*/
+    /*top: 16px;*/
+    /*right: 15px;*/
+    cursor: pointer;
+}
+
+@-webkit-keyframes slideDownUp {
+    from {
+        -webkit-transform: translateY(-100%);
+    }
+    to {
+        -webkit-transform: translateY(0);
+    }
+}
