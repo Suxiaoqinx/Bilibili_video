@@ -19,7 +19,7 @@ queryBtn.addEventListener("click", function() {
         url: 'bilibili.php?url=' + url,
         success: function(data) {
             //看下有多少条数据
-            if (data != null && data.code == 1) {
+            if (data != null&&data.code==1) {
                 
                 //清空子元素
                 while (table_body.hasChildNodes()) {

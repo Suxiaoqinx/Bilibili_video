@@ -1,17 +1,17 @@
 <?php
 /**
- * ×÷Õß:ËÕÏşÇç
- * ×÷ÕßQQ:3074193836
- * Ãâ·Ñ½Å±¾ ÇëÎğÊÕ·Ñ~
- * ¸öÈË²©¿Í www.toubiec.cn
- * ¸ĞĞ»Ä«Ô¨ÖØ¹¹µÄ´úÂë£¡
+ * ä½œè€…:è‹æ™“æ™´
+ * ä½œè€…QQ:3074193836
+ * å…è´¹è„šæœ¬ è¯·å‹¿æ”¶è´¹~
+ * ä¸ªäººåšå®¢ www.toubiec.cn
+ * æ„Ÿè°¢å¢¨æ¸Šé‡æ„çš„ä»£ç ï¼
  */
 header('Content-type: text/json;charset=utf-8');
-$urls = 'https://b23.tv/3ygbgeA';
+//$urls = 'https://b23.tv/3ygbgeA';
 $urls = $_GET['url'];
 $array = parse_url($urls);
 if (empty($array)) {
-    exit(json_encode(['code'=>-1, 'msg'=>"ÊÓÆµÁ´½Ó²»ÕıÈ·"], 480));
+    exit(json_encode(['code'=>-1, 'msg'=>"è§†é¢‘é“¾æ¥ä¸æ­£ç¡®"], 480));
 }elseif ($array['host'] == 'b23.tv') {
     $header = get_headers($urls,true);
     $array = parse_url($header['Location']);
@@ -21,42 +21,46 @@ if (empty($array)) {
 }elseif ($array['host'] == 'm.bilibili.com') {
     $bvid = $array['path'];
 }else{
-    exit(json_encode(['code'=>-1, 'msg'=>"ÊÓÆµÁ´½ÓºÃÏñ²»Ì«¶Ô£¡"], 480));
+    exit(json_encode(['code'=>-1, 'msg'=>"è§†é¢‘é“¾æ¥å¥½åƒä¸å¤ªå¯¹ï¼"], 480));
 }
 if (strpos($bvid, '/video/') === false) {
-    exit(json_encode(['code'=>-1, 'msg'=>"ºÃÏñ²»ÊÇÊÓÆµÁ´½Ó"], 480));
+    exit(json_encode(['code'=>-1, 'msg'=>"å¥½åƒä¸æ˜¯è§†é¢‘é“¾æ¥"], 480));
 }
 $bvid = str_replace("/video/", "", $bvid);
-//ÕâÀïÌîĞ´ÄãµÄBÕ¾cookie(²»Ìî½âÎö²»µ½1080PÒÔÉÏ) ¸ñÊ½Îª_uuid=XXXXX
-$cookie = '_uuid=XXXX';
+//è¿™é‡Œå¡«å†™ä½ çš„Bç«™cookie(ä¸å¡«è§£æä¸åˆ°1080Pä»¥ä¸Š) æ ¼å¼ä¸º_uuid=XXXXX
+$cookie = '';
 $header = ['Content-type: application/json;charset=UTF-8'];
 $useragent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36';
-//»ñÈ¡½âÎöĞèÒªµÄcidÖµºÍÍ¼Æ¬ÒÔ¼°±êÌâ
+//è·å–è§£æéœ€è¦çš„cidå€¼å’Œå›¾ç‰‡ä»¥åŠæ ‡é¢˜
 $json1 = bilibili(
     'https://api.bilibili.com/x/web-interface/view?bvid='.$bvid
     , $header
     , $useragent
     , $cookie
 );
-$array      =   json_decode($json1,true);
+$array = json_decode($json1,true);
 if($array['code'] == '0'){
-    //Ñ­»·»ñÈ¡
+    //å¾ªç¯è·å–
     foreach($array['data']['pages'] as $keys =>$pron){
-        //¶Ô½ÓÉÏÃæ»ñÈ¡cidÖµAPIÀ´È¡µÃÊÓÆµµÄÖ±Á´
+        //å¯¹æ¥ä¸Šé¢è·å–cidå€¼APIæ¥å–å¾—è§†é¢‘çš„ç›´é“¾
         $json2 = bilibili(
             "https://api.bilibili.com/x/player/playurl?otype=json&fnver=0&fnval=3&player=3&qn=64&bvid=".$bvid."&cid=".$pron['cid']."&platform=html5&high_quality=1"
             , $header
             , $useragent
             , $cookie
         );
-        $array_2     =   json_decode($json2,true);
-        $bilijson[]    =   [
-            'title'         =>  $pron['part']
-            ,'video_url'    =>  $array_2['data']['durl'][0]['url']
+        $array_2 = json_decode($json2,true);
+        $bilijson[] = [
+            'title' =>  $pron['part']
+            ,'duration' => $pron['duration']
+            ,'durationFormat' => gmdate('H:i:s', $pron['duration']-1)
+            ,'accept' => $array_2['data']['accept_description']
+            ,'video_url' =>  $array_2['data']['durl'][0]['url']
         ];
     }
     $JSON = array(
-        'msg' => '½âÎö³É¹¦£¡'
+        'code' => 1
+        ,'msg' => 'è§£ææˆåŠŸï¼'
         ,'title' => $array['data']['title']
         ,'imgurl' => $array['data']['pic']
         ,'desc' => $array['data']['desc']
@@ -66,12 +70,12 @@ if($array['code'] == '0'){
             , 'user_img' => $array['data']['owner']['face']
         ]
         ,'text' => [
-            'msg' => '´Ë½Ó¿ÚÖ»Ö§³ÖBÕ¾ÊÓÆµ °üÀ¨·¬¾ç µçÓ° µçÊÓ¾ç ¶¼²»ÄÜ½âÎö'
-            ,'copyright' => '½Ó¿Ú±àĞ´:ËÕÏşÇç 2022.5.4'
+            'msg' => 'æ­¤æ¥å£åªæ”¯æŒBç«™è§†é¢‘ åŒ…æ‹¬ç•ªå‰§ ç”µå½± ç”µè§†å‰§ éƒ½ä¸èƒ½è§£æ'
+            ,'copyright' => 'æ¥å£ç¼–å†™:è‹æ™“æ™´ 2022.5.8 åŸºäºæºä»£ç é‡æ„'
         ]
     );
 }else{
-    $JSON = ['code'=>-1, 'msg'=>"½âÎöÊ§°Ü£¡"];
+    $JSON = ['code'=>0, 'msg'=>"è§£æå¤±è´¥ï¼"];
 }
 exit(json_encode($JSON,480));
 function bilibili($url, $header, $user_agent, $cookie) {
