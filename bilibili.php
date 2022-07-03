@@ -55,7 +55,7 @@ if($array['code'] == '0'){
             ,'duration' => $pron['duration']
             ,'durationFormat' => gmdate('H:i:s', $pron['duration']-1)
             ,'accept' => $array_2['data']['accept_description']
-            ,'video_url' =>  $array_2['data']['durl'][0]['url']
+            ,'video_url' =>  str_replace(["cn-hljheb-dx-v-01","cn-hljheb-dx-v-02","cn-hljheb-dx-v-03"], 'upos-sz-mirrorcos', $array_2['data']['durl'][0]['url'])
         ];
     }
     $JSON = array(
