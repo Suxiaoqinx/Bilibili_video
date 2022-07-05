@@ -55,7 +55,7 @@ if($array['code'] == '0'){
             ,'duration' => $pron['duration']
             ,'durationFormat' => gmdate('H:i:s', $pron['duration']-1)
             ,'accept' => $array_2['data']['accept_description']
-            ,'video_url' =>  $array_2['data']['durl'][0]['url']
+            ,'video_url' =>  'https://upos-sz-mirrorhw.bilivideo.com/'.explode('.bilivideo.com/',$array_2['data']['durl'][0]['url'])[1] 
         ];
     }
     $JSON = array(
